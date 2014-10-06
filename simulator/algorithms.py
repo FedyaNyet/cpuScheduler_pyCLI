@@ -101,7 +101,6 @@ class RoundRobin(FIFO):
 		i = (prev_job_index + 1) % len(self._processes)
 		while i != prev_job_index:
 			process = self._processes[i]
-			print "P"+str(process.id)+" arrival:"+str(process.arrival_time)+" pc:"+str(pc)
 			i = (i + 1) % len(self._processes)
 			if not process.is_finished() and process.arrival_time <= pc:
 				return process
@@ -110,13 +109,11 @@ class RoundRobin(FIFO):
 
 	def get_process(self, pc):
 		if not (self._proc_timer % self._quantum) or self._prev_job.is_finished():
-			print "------getting next job @ pc:"+str(pc)
 			next_job = self.get_next_unfinished_job(pc)
 			if next_job:
 				self._prev_job = next_job
 				self._proc_timer = 0
 		if self._prev_job:
-			print "job at pc:"+str(pc)+" is "+str(self._prev_job.id)
 			self._proc_timer += 1
  		return self._prev_job
 
