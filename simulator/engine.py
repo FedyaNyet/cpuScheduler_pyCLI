@@ -8,8 +8,9 @@ class Engine:
 	_scheduler = None
 	_process_count = 0
 	_program_counter = 0
+	_time_quantum  = 2
 
-	def __init__(self, filename, algorithm):
+	def __init__(self, filename, algorithm, quantum):
 		alg_key = str(algorithm).upper()
 		if alg_key not in ALGORITHMS:
 			print "Please provide a valid algorithm"
@@ -17,7 +18,7 @@ class Engine:
 
 		processes = self.parse_processes(filename)
 		alg = ALGORITHMS[alg_key]
-		self._scheduler = alg(processes)
+		self._scheduler = alg(processes, quantum=int(quantum))
 
 	def parse_processes(self, filename):
 		processes = []
@@ -27,7 +28,6 @@ class Engine:
 				self._process_count = int(line.strip())
 				continue
 			process_desc = line.strip().replace('\t',' ').split(' ')
-			
 			processes.append(Process(id=line_num,arrival_time=int(process_desc[0]),length_time=int(process_desc[1])))
 		return processes
 
