@@ -9,10 +9,13 @@ Most basic installations of python include `pip`, which is to be used for instal
 HOW TO PLAY
 ===========
 
-To run get started, change into the folder containing this file and run `$ Python simulate.py --help`. This will explain to you the inputs available to run the simulator. 
+To run, change into the folder containing this file and run `$ Python simulate.py --help`. This will explain to you the inputs available to run the simulator. 
 
 The simulator runs by using the `input.txt` file to use as the CPU process schedule blueprint. The first line defines the number of processes, and each following line is the corresponding processes' start time and execution time. the optional `--file` param allows you to provide a new file as an input to the simluator.
 
+Some sample runs are as follow: `$ Python simulate.py SJF`, `$ Python simulate.py FIFO` or `$ Python simulate.py -q 10 RR`, which by default will run the algorithm found in: https://github.com/fydo23/cpuScheduler_pyCLI/blob/master/input.txt
+
+
 AUTHORS
 ============
-Fyodor Wolf
+Fyodor Wolf (fwolf@bu.edu)
